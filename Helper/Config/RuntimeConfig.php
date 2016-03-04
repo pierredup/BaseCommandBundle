@@ -195,19 +195,9 @@ class RuntimeConfig
         }
 
         // Locking parameters
-        if ($input->getOption('locking') !== null) {
-            $lockingInput = strtolower($input->getOption('locking'));
-
-            $validLockingOptions = array('on', 'off');
-            if (!in_array($lockingInput, $validLockingOptions)) {
-                throw new BaseCommandException(
-                    'Invalid value for \'--locking\' parameter. ' . 'You specified "' . $lockingInput . '". ' .
-                    'Valid values are: ' . implode(',', $validLockingOptions));
-            }
-
-            $this->setLocking((($lockingInput == 'on') ? true : false));
+        if (!$this->isLocking()) {
+            $this->setLocking($input->getOption('lock'));
         }
-
     }
 
     /**

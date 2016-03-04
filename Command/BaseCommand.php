@@ -59,8 +59,8 @@ abstract class BaseCommand extends ContainerAwareCommand
                 implode(', ', array_keys(Logger::getLevels())))
             ->addOption('log-filename', null, InputOption::VALUE_REQUIRED, 'Specify a different file (relative to the '.
                 'kernel log directory) to send file logs to')
-            ->addOption('locking', null, InputOption::VALUE_REQUIRED, 'Whether or not this execution needs to acquire a '.
-                ' lock that ensures that the command is only being run once concurrently. Valid values: on, off');
+            ->addOption('lock', null, InputOption::VALUE_NONE, 'Whether or not this execution needs to acquire a '.
+                ' lock that ensures that the command is only being run once concurrently.');
 
         $this->advanceExecutionPhase(RuntimeConfig::PHASE_POST_CONFIGURE);
     }
