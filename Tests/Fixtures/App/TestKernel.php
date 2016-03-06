@@ -1,6 +1,7 @@
 <?php
 namespace Afrihost\BaseCommandBundle\Tests\Fixtures\App;
 
+use org\bovigo\vfs\vfsStream;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -22,6 +23,14 @@ class TestKernel extends Kernel
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Afrihost\BaseCommandBundle\AfrihostBaseCommandBundle()
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getCacheDir()
+    {
+        return vfsStream::setup()->url();
     }
 
     /**
